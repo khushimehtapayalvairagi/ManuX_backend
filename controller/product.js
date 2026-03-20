@@ -29,9 +29,9 @@ export const updateProduct = async (req, res) => {
       updateData.name = req.body.name;
     }
 
-    if (req.body.price !== undefined) {
-      updateData.price = req.body.price;
-    }
+    // if (req.body.price !== undefined) {
+    //   updateData.price = req.body.price;
+    // }
 
     if (req.body.description !== undefined) {
       updateData.description = req.body.description;
