@@ -17,18 +17,46 @@ export const getProducts = async (req, res) => {
 };
 
 export const updateProduct = async (req, res) => {
-  const data = {
-    name: req.body.name,
-    price: req.body.price,
-    category: req.body.category,
-  };
+  try {
 
-  if (req.file) {
-data.image = req.file.filename;
+    console.log("BODY:", req.body);
+    console.log("FILE:", req.file);
+
+    const updateData = {};
+
+    // Only update if value exists
+    if (req.body.name !== undefined) {
+      updateData.name = req.body.name;
+    }
+
+    if (req.body.price !== undefined) {
+      updateData.price = req.body.price;
+    }
+
+    if (req.body.description !== undefined) {
+      updateData.description = req.body.description;
+    }
+
+    if (req.body.category !== undefined) {
+      updateData.category = req.body.category;
+    }
+
+    if (req.file) {
+      updateData.image = req.file.filename;
+    }
+
+    const product = await Product.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
+
+    res.json(product);
+
+  } catch (error) {
+    console.log("UPDATE ERROR:", error);
+    res.status(500).json({ message: error.message });
   }
-
-  const product = await Product.findByIdAndUpdate(req.params.id, data, { new: true });
-  res.json(product);
 };
 
 export const deleteProduct = async (req, res) => {
