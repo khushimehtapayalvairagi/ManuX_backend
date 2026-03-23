@@ -13,7 +13,15 @@ export const addProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
   const products = await Product.find();
-  res.json(products);
+
+  const fullProducts = products.map((p) => ({
+    ...p._doc,
+    image: p.image
+      ? `${req.protocol}://${req.get("host")}/uploads/${p.image}`
+      : null,
+  }));
+
+  res.json(fullProducts);
 };
 
 export const updateProduct = async (req, res) => {
