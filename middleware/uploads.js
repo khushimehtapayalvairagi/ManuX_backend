@@ -1,12 +1,12 @@
 import multer from "multer";
 import fs from "fs";
-import path from "path";
 
-// make sure uploads folder exists
-const uploadDir = path.join(process.cwd(), "uploads");
+// ✅ FINAL upload path (PUBLIC FOLDER)
+const uploadDir = "/var/www/manux/uploads";
 
+// make sure folder exists
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
+  fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 const storage = multer.diskStorage({
@@ -14,7 +14,9 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    // ✅ remove spaces (important)
+    const cleanName = file.originalname.replace(/\s+/g, "-");
+    cb(null, Date.now() + "-" + cleanName);
   }
 });
 
