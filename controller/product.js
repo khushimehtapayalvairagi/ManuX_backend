@@ -17,8 +17,8 @@ export const getProducts = async (req, res) => {
   const fullProducts = products.map((p) => ({
     ...p._doc,
     image: p.image
-      ? `${req.protocol}://${req.get("host")}/uploads/${p.image}`
-      : null,
+  ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(p.image)}`
+  : `${req.protocol}://${req.get("host")}/uploads/default.png`,
   }));
 
   res.json(fullProducts);
