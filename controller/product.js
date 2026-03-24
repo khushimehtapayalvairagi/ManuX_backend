@@ -11,19 +11,31 @@ export const addProduct = async (req, res) => {
   res.json(product);
 };
 
+// export const getProducts = async (req, res) => {
+//   const products = await Product.find();
+
+//   const fullProducts = products.map((p) => ({
+//     ...p._doc,
+//     image: p.image
+//   ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(p.image)}`
+//   : `${req.protocol}://${req.get("host")}/uploads/default.png`,
+//   }));
+
+//   res.json(fullProducts);
+// };
+
 export const getProducts = async (req, res) => {
   const products = await Product.find();
 
   const fullProducts = products.map((p) => ({
     ...p._doc,
     image: p.image
-  ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(p.image)}`
-  : `${req.protocol}://${req.get("host")}/uploads/default.png`,
+      ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(p.image)}`
+      : null, // ❗ DO NOT SEND /uploads/null
   }));
 
   res.json(fullProducts);
 };
-
 export const updateProduct = async (req, res) => {
   try {
 
