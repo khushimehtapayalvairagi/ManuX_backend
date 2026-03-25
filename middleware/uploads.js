@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 // make sure uploads folder exists
-const uploadDir = path.join(process.cwd(), "uploads");
+const uploadDir = "/var/www/manux/uploads";
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
