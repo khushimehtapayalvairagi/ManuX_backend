@@ -3,8 +3,7 @@ import fs from "fs";
 import path from "path";
 
 // make sure uploads folder exists
-import multer from "multer";
-import fs from "fs";
+
 
 const uploadDir = "/var/www/manux/uploads"; // ✅ FINAL
 
