@@ -27,12 +27,10 @@ export const addProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
   const products = await Product.find();
 
-  const fullProducts = products.map((p) => ({
-    ...p._doc,
-    image: p.image
-      ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(p.image)}`
-      : null, // ❗ DO NOT SEND /uploads/null
-  }));
+ const fullProducts = products.map((p) => ({
+  ...p._doc,
+  image: p.image || null,
+}));
 
   res.json(fullProducts);
 };
@@ -72,13 +70,10 @@ export const updateProduct = async (req, res) => {
       { new: true }
     );
 
-  const updatedProduct = {
+ const updatedProduct = {
   ...product._doc,
-  image: product.image
-    ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(product.image)}`
-    : null,
+  image: product.image || null,
 };
-
 res.json(updatedProduct);
 
   } catch (error) {
