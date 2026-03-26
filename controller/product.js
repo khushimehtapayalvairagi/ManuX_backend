@@ -51,10 +51,10 @@ export const updateProduct = async (req, res) => {
     //   updateData.price = req.body.price;
     // }
 
-    // if (req.body.description !== undefined) {
-    //   updateData.description = req.body.description;
-    // }
-  updateData.description = req.body.description ?? "";
+    if (req.body.description !== undefined) {
+      updateData.description = req.body.description;
+    }
+  // updateData.description = req.body.description ?? "";
 
     if (req.body.category !== undefined) {
       updateData.category = req.body.category;
