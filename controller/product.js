@@ -56,9 +56,9 @@ export const updateProduct = async (req, res) => {
     // if (req.body.description !== undefined) {
     //   updateData.description = req.body.description;
     // }
-    if ("description" in req.body) {
-      updateData.description = req.body.description || "";
-    }
+   if (req.body.description !== undefined) {
+  updateData.description = req.body.description;
+}
 
     if (req.body.category !== undefined) {
       updateData.category = req.body.category;
