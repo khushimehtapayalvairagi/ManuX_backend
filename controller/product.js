@@ -70,11 +70,7 @@ export const updateProduct = async (req, res) => {
       { new: true }
     );
 
- const updatedProduct = {
-  ...product._doc,
-  image: product.image || null,
-};
-res.json(updatedProduct);
+res.json(product);
 
   } catch (error) {
     console.log("UPDATE ERROR:", error);
