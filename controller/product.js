@@ -74,7 +74,14 @@ export const updateProduct = async (req, res) => {
       { new: true }
     );
 
-    res.json(product);
+  const updatedProduct = {
+  ...product._doc,
+  image: product.image
+    ? `${req.protocol}://${req.get("host")}/uploads/${encodeURIComponent(product.image)}`
+    : null,
+};
+
+res.json(updatedProduct);
 
   } catch (error) {
     console.log("UPDATE ERROR:", error);
