@@ -41,7 +41,7 @@ export const updateProduct = async (req, res) => {
 
     console.log("BODY:", req.body);
     console.log("FILE:", req.file);
-
+      console.log("RAW BODY:", req.body);
     const updateData = {};
 
     // Only update if value exists
