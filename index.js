@@ -19,7 +19,7 @@ app.use(
           // origin: ["https://kloudcrm.site", "http://kloudcrm.site", "https://www.kloudcrm.site"],
       //      origin: [ "https://kashichem.com",  // ✅ Add this line
       //  origin:["http://manux.kashichem.com"],
-            origin: "https://manuxnbc.com",
+            origin: "http://manuxnbc.com",
         credentials: true,
   })
 );
