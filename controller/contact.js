@@ -34,3 +34,14 @@ export const createContact = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+export const getContacts = async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+
+    res.json(contacts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
