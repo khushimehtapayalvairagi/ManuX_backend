@@ -14,11 +14,7 @@ const app = express();
 
 app.use(
   cors({
-    // origin: ["https://uudra.in", "http://localhost:3000"],
-        // origin: ["http://localhost:3000"],
-          // origin: ["https://kloudcrm.site", "http://kloudcrm.site", "https://www.kloudcrm.site"],
-      //      origin: [ "https://kashichem.com",  // ✅ Add this line
-      //  origin:["http://manux.kashichem.com"],
+   
           origin: ["http://manuxnbc.com", "https://manuxnbc.com"],
         credentials: true,
   })

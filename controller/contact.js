@@ -1,5 +1,6 @@
 import Contact from "../models/Contact.js";
 
+import { sendContactMail } from "../utils/sendMail.js";
 export const createContact = async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;
@@ -15,7 +16,7 @@ export const createContact = async (req, res) => {
       phone,
       message
     });
-
+     await sendContactMail(newContact).catch(err => console.log(err));
     res.status(201).json({
       message: "Message saved successfully",
       data: newContact
