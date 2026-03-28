@@ -1,3 +1,6 @@
+import Contact from "../models/Contact.js";
+
+import { sendContactMail } from "../utils/sendMail.js";
 export const createContact = async (req, res) => {
   try {
     console.log("👉 CONTACT API HIT");
