@@ -16,7 +16,11 @@ export const createContact = async (req, res) => {
       phone,
       message
     });
-     await sendContactMail(newContact).catch(err => console.log(err));
+    try {
+  await sendContactMail(newContact);
+} catch (err) {
+  console.log("MAIL ERROR:", err);
+}
     res.status(201).json({
       message: "Message saved successfully",
       data: newContact
