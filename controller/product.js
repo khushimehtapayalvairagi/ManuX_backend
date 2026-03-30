@@ -1,5 +1,14 @@
 import Product from "../models/Product.js";
 
+
+
+const toTitleCase = (text) => {
+  if (!text) return "";
+  return text
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
 export const addProduct = async (req, res) => {
   const product = await Product.create({
     name: req.body.name,
@@ -54,11 +63,13 @@ export const updateProduct = async (req, res) => {
     // if (req.body.description !== undefined) {
     //   updateData.description = req.body.description;
     // }
-  updateData.description = req.body.description ?? "";
+if (req.body.name !== undefined) {
+  updateData.name = toTitleCase(req.body.name);
+}
 
-    if (req.body.category !== undefined) {
-      updateData.category = req.body.category;
-    }
+if (req.body.description !== undefined) {
+  updateData.description = toTitleCase(req.body.description);
+}
 
     if (req.file) {
       updateData.image = req.file.filename;
