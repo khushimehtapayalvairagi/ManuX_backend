@@ -25,8 +25,8 @@ export const addProduct = async (req, res) => {
 // };
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find();
-
+  // const products = await Product.find();
+const products = await Product.find().populate("category");
  const fullProducts = products.map((p) => ({
   ...p._doc,
   image: p.image || null,

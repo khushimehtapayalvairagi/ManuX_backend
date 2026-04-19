@@ -8,7 +8,7 @@ import productRoutes from "./routes/product.js";
 // import userRoutes from "./routes/user.js";
 import contactRoutes from "./routes/contact.js";
 import notificationRoutes from "./routes/notification.js";
-
+import categoryRoutes from "./routes/category.js";
 
 dotenv.config();
 connectDB();
@@ -30,6 +30,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/uploads", express.static("/var/www/manux/uploads"));
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/categories", categoryRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
