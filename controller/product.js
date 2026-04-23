@@ -34,6 +34,8 @@ const products = await Product.find().populate("category");
 
   res.json(fullProducts);
 };
+
+
 export const updateProduct = async (req, res) => {
   try {
 
