@@ -1,5 +1,6 @@
 import Category from "../models/Category.js";
 
+// ✅ ADD
 export const addCategory = async (req, res) => {
   try {
     const category = await Category.create({
@@ -10,11 +11,21 @@ export const addCategory = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
 export const getCategories = async (req, res) => {
-  const categories = await Category.find();
-  res.json(categories);
+  try {
+    const categories = await Category.find();
+    res.json(categories);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
+
+
+// ✅ GET
+// export const getCategories = async (req, res) => {
+//   const categories = await Category.find();
+//   res.json(categories);
+// };
 
 // ✅ DELETE (🔥 IMPORTANT ADD THIS)
 export const deleteCategory = async (req, res) => {
@@ -39,3 +50,22 @@ export const updateCategory = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+// import Category from "../models/Category.js";
+
+// export const addCategory = async (req, res) => {
+//   try {
+//     const category = await Category.create({
+//       name: req.body.name
+//     });
+//     res.json(category);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
+
+// export const getCategories = async (req, res) => {
+//   const categories = await Category.find();
+//   res.json(categories);
+// };

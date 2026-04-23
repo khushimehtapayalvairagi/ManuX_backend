@@ -25,14 +25,21 @@ export const addProduct = async (req, res) => {
 // };
 
 export const getProducts = async (req, res) => {
-  // const products = await Product.find();
-const products = await Product.find().populate("category");
- const fullProducts = products.map((p) => ({
-  ...p._doc,
-  image: p.image || null,
-}));
+  try {
+    const { category } = req.query;
 
-  res.json(fullProducts);
+    let products;
+
+    if (category) {
+      products = await Product.find({ category });
+    } else {
+      products = await Product.find();
+    }
+
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
 
